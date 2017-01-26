@@ -1,4 +1,3 @@
-
 public class MyProgram extends ConsoleProgram
 {
     public void run()
@@ -8,13 +7,13 @@ public class MyProgram extends ConsoleProgram
             
         for(int the = 0; the < 26; the++)
         {
-            System.out.println(shiftMethod(mySentence, the));
+            //System.out.println(shiftMethod(mySentence, the));
             String please = shiftMethod(mySentence, the);
             if(isWords(please))
             {
-                System.out.println("This is a match!");
-                System.out.println(please);
-                System.out.println(the);
+            //System.out.println("This is a match!");
+            System.out.println(please);
+            System.out.println(the);
             }
         }
         
@@ -202,19 +201,35 @@ public class MyProgram extends ConsoleProgram
     
     public boolean isWords(String theString)
     {
+         String[] common = {"the","of","and","to","in","is","you","that",
+         "it","he","was","for","on","are","as","with","his","they","at",
+         "be","this","have","from","or","one","had","by","word","but","not",
+         "what","all","were","when","your","can","said","there","use",
+         "an","each","which","she","do","how","their","if","will","up","other",
+         "about","out","many","then","them","these","so","some","her","would",
+         "make","like","him","into","time","has","look","two","more","write",
+         "see","number","no","way","could","people","my","than","first",
+         "water","been","call","who","oil","its","now","find","long","down",
+         "day","did","get","come","made","may","part"};
+
         String[] theWords = theString.split(" ");
         
         boolean theTrue = true;
         for(int aa = 0; aa < theWords.length; aa++)
         {
-            if(theWords[aa].equals("the") || theWords[aa].equals("and"))
+            for(int b = 0; b < common.length; b++)
+                if(theWords[aa].equals(common[b]))
+                {
+                    theTrue = true;
+                    break;
+                }
+                else
+                {
+                    theTrue = false;
+                }
+            if(theTrue == true)
             {
-                theTrue = true;
                 break;
-            }
-            else
-            {
-                theTrue = false;
             }
         }
         return theTrue;
