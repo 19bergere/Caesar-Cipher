@@ -2,24 +2,60 @@ public class MyProgram extends ConsoleProgram
 {
     public void run()
     {
-     
-        String mySentence = readLine("What is your sentence? ");
-            
-        for(int the = 0; the < 26; the++)
+        String ed = readLine("Do you want to encrypt of decrypt? (e / d) ");
+        
+        if(ed.equals("e"))
         {
-            //System.out.println(shiftMethod(mySentence, the));
-            String please = shiftMethod(mySentence, the);
-            if(isWords(please))
+            String mySentence = readLine("What is your sentence? (It must be at least 10 words) "); 
+            int theShift = readInt("What is your shift? ");
+            String newSentence = (shiftMethod(mySentence, theShift));
+            System.out.println(newSentence);
+            String continueThe = readLine("Would you know like to decrypt now? (y / n) ");
+            if(continueThe.equals("y"))
             {
-            //System.out.println("This is a match!");
-            System.out.println(please);
-            System.out.println(the);
+                for(int the = 0; the < 26; the++)
+                {
+                //System.out.println("First copy your encrypted sentence and then paste it when asked What is your sentence");
+                //String otherSentence = readLine("What is your sentence? ");
+                //System.out.println(shiftMethod(mySentence, the));
+                String please = shiftMethod(newSentence, the);
+                    if(isWords(please))
+                    {
+                   //System.out.println("This is a match!");
+                    System.out.println(please);
+                   //System.out.println(the);
+                    }
+                }
+            }
+            else if(continueThe.equals("n"))
+            {
+                System.out.println("Well okay then" );
+            }
+            else
+            {
+                System.out.println("Please enter y or n ");
             }
         }
-        
-        
+        else if(ed.equals("d"))
+        {
+            for(int the = 0; the < 26; the++)
+            {
+                String mySentence = readLine("What is your sentence? ");
+                System.out.println(shiftMethod(mySentence, the));
+                String please = shiftMethod(mySentence, the);
+                if(isWords(please))
+                {
+               //System.out.println("This is a match!");
+                System.out.println(please);
+               //System.out.println(the);
+                }
+            }
         }
-    
+        else
+        {
+            System.out.println("Please type in a 'e' or a 'd'. ");
+        }
+    }
     
     //Encrypt the sentence
     public String shiftMethod(String sentence, int shift)
@@ -158,6 +194,8 @@ public class MyProgram extends ConsoleProgram
                 {
                     shift = 26;
                 }
+                //this is never going to be used but i think that i need
+                //an else at the bottom
                 else
                 {
                     shift = 6666;
@@ -166,17 +204,21 @@ public class MyProgram extends ConsoleProgram
             //This if statement is for shifts between 1 & 26
             if(charInt > 64 && charInt < 91)
             {
+                // if the shift + the ASCII value not is under 91, ads the shift to 65
                 if(charInt + shift >= 91)
                 {
                     int finalChar = (((charInt + shift) - 91) + 65);
                     placeHolderChar = (char) finalChar;
                 }
+                //otherwise it just does this
                 else
                 {
                     int finalChar = charInt + shift;
                     placeHolderChar = (char) finalChar;
                 }
             }
+            
+            //same thing as above only for lower case
             else if(charInt > 96 && charInt < 123)
             {
                 if(charInt + shift >= 123)
@@ -190,6 +232,8 @@ public class MyProgram extends ConsoleProgram
                     placeHolderChar = (char) finalChar;
                 }   
             }
+            //if it is anything else (punctiation, spaces) then it just
+            //keeps it the same
             else
             {
                 placeHolderChar = (char) charInt;
@@ -201,6 +245,7 @@ public class MyProgram extends ConsoleProgram
     
     public boolean isWords(String theString)
     {
+        //Top words in the English language
          String[] common = {"the","of","and","to","in","is","you","that",
          "it","he","was","for","on","are","as","with","his","they","at",
          "be","this","have","from","or","one","had","by","word","but","not",
@@ -211,16 +256,23 @@ public class MyProgram extends ConsoleProgram
          "see","number","no","way","could","people","my","than","first",
          "water","been","call","who","oil","its","now","find","long","down",
          "day","did","get","come","made","may","part"};
-
+        
+        // Splits the sentence into seperate words
         String[] theWords = theString.split(" ");
         
+        //sets a place holder boolean
         boolean theTrue = true;
+        
+        //makes  a for loop t ocheck if the word is equal to a buzz word
+        //One loop for every word
         for(int aa = 0; aa < theWords.length; aa++)
         {
+            //this also checks for buzzwords but goes through the words
             for(int b = 0; b < common.length; b++)
                 if(theWords[aa].equals(common[b]))
                 {
                     theTrue = true;
+                    //break because you dont want to to rerun and return false
                     break;
                 }
                 else
