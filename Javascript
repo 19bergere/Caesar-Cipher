@@ -1,0 +1,167 @@
+function run()
+    {
+        var mySentence = readLine("What is your sentence? ");
+        var myShift = readInt("What is your shift? ");
+        var yes = (shiftMethod(mySentence, myShift));
+        println(yes);
+    }
+
+    run();
+    function shiftMethod(sentence, shift)
+    {
+         var length = sentence.length;
+         var placeHolder = "";
+         var placeHolderChar = '';
+        for(var i = 0; i < length; i++)
+        {
+             var current = sentence.charAt(i);
+             var charInt = current.charCodeAt(0);
+            if(shift >= 27)
+                {
+                    if(shift % 26 == 1 % 26)
+                    {
+                        shift = 1;
+                    }
+                    else if(shift % 26 == 2 % 26)
+                    {
+                        shift = 2;
+                    }
+                    else if(shift % 26 == 3 % 26)
+                    {
+                        shift = 3;
+                    }
+                    else if(shift % 26 == 4 % 26)
+                    {
+                        shift = 4;
+                    }
+                    else if(shift % 26 == 5 % 26)
+                    {
+                        shift = 5;
+                    }
+                    else if(shift % 26 == 6 % 26)
+                    {
+                        shift = 6;
+                    }
+                    else if(shift % 26 == 7 % 26)
+                    {
+                        shift = 7;
+                    }
+                    else if(shift % 26 == 8 % 26)
+                    {
+                        shift = 8;
+                    }
+                    else if(shift % 26 == 9 % 26)
+                    {
+                        shift = 9;
+                    }
+                    else if(shift % 26 == 10 % 26)
+                    {
+                        shift = 10;
+                    }
+                    else if(shift % 26 == 11 % 26)
+                    {
+                        shift = 11;
+                    }
+                    else if(shift % 26 == 12 % 26)
+                    {
+                        shift = 12;
+                    }
+                    else if(shift % 26 == 13 % 26)
+                    {
+                        shift = 13;
+                    }
+                    else if(shift % 26 == 14 % 26)
+                    {
+                        shift = 14;
+                    }
+                    else if(shift % 26 == 15 % 26)
+                    {
+                        shift = 15;
+                    }
+                    else if(shift % 26 == 16 % 26)
+                    {
+                        shift = 16;
+                    }
+                    else if(shift % 26 == 17 % 26)
+                    {
+                        shift = 17;
+                    }
+                    else if(shift % 26 == 18 % 26)
+                    {
+                        shift = 18;
+                    }
+                    else if(shift % 26 == 19 % 26)
+                    {
+                        shift = 19;
+                    }
+                    else if(shift % 26 == 20 % 26)
+                    {
+                        shift = 20;
+                    }
+                    else if(shift % 26 == 21 % 26)
+                    {
+                        shift = 21;
+                    }
+                    else if(shift % 26 == 22 % 26)
+                    {
+                        shift = 22;
+                    }
+                    else if(shift % 26 == 23 % 26)
+                    {
+                        shift = 23;
+                    }
+                    else if(shift % 26 == 24 % 26)
+                    {
+                        shift = 24;
+                    }
+                    else if(shift % 26 == 25 % 26)
+                    {
+                        shift = 25;
+                    }
+                    else if(shift % 26 == 26 % 26)
+                    {
+                        shift = 26;
+                    }
+                    else
+                    {
+                        shift = null;
+                    }
+                }
+                    if(charInt > 64 && charInt < 91)
+                    {
+                        if(charInt + shift >= 91)
+                        {
+                            finalChar = (((charInt + shift) - 91) + 65);
+                            placeHolderChar = String.fromCharCode(finalChar);
+                        }
+                        else
+                        {
+                            var finalChar = charInt + shift;
+                            placeHolderChar = String.fromCharCode(finalChar);
+
+                        }
+                    }
+
+                else if(charInt > 96 && charInt < 123)
+                {
+                    if(charInt + shift >= 123)
+                    {
+                        finalChar = (((charInt + shift) - 123) + 97);
+                        placeHolderChar = String.fromCharCode(finalChar);
+
+                    }
+                    else
+                    {
+                        var finalChar = charInt + shift;
+                        placeHolderChar = String.fromCharCode(finalChar);
+
+                    }
+                }
+            else
+            {
+                placeHolderChar = String.fromCharCode(charInt);
+            }
+        placeHolder += placeHolderChar;
+        }
+        return placeHolder;
+    }
