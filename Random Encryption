@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <script>
+    function run()
+        {
+            var mySentence = "What is your sentence? ";
+            var myShift = "What is your shift? ";
+            //var yes = (shiftMethod(mySentence, myShift));
+            //println(yes);
+        }
+
+
+
+        function input(){
+          var input = document.getElementById("inputBox").value;
+          //document.getElementById("inputB").innerHTML = input;
+          //console.log(input);
+          //var shift = parseInt(document.getElementById("inputBox2").value);
+          //console.log(shift);
+          //var random = mathRandom(1, 27);
+
+          var string = "";
+          for (var p = 0; p < input.length; p++) {
+            var random = mathRandom(1, 27);
+            var encrypt = shiftMethod(input.charAt(p), random);
+            string += encrypt;
+          }
+          document.getElementById("submit").innerHTML = string;
+
+            //var encrypt = shiftMethod(input, random);
+            //document.getElementById("submit").innerHTML = encrypt;
+
+          //var encrypt2 = shiftMethod(input, random);
+          //document.getElementById("submit").innerHTML = encrypt2;
+          //alert(encrypt);
+
+          }
+
+        function mathRandom(min, max)
+        {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+
+        function shiftMethod(sentence, shift)
+        {
+             var length = sentence.length;
+             var placeHolder = "";
+             var placeHolderChar = '';
+             for(var i = 0; i < length; i++)
+             {
+                 var current = sentence.charAt(i);
+                 var charInt = current.charCodeAt(0);
+                 var random = mathRandom(33, 127);
+                 charInt = random;
+                 placeHolderChar = String.fromCharCode(random);
+
+               
+            placeHolder += placeHolderChar;
+            return placeHolder;
+        }
+      }
+      </script>
+  </head>
+
+  <body>
+<input id="inputBox" type="text" required placeholder="Type Sentence"></input>
+<button id="button" onclick="input()">Encrypt</button>
+<br>
+<br>
+<h1 id="submit"></h1>
+
+  </body>
+
+<html>
